@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">EuroCalc</string>
+    <string name="title_activity_history">History</string>
+    <string name="ok">OK</string>
+    <string name="permission_camera_rationale">Access to the camera is needed for detection</string>
+    <string name="no_camera_permission">This application cannot run because it does not have the camera permission. The application will now exit.</string>
+    <string name="low_storage_error">Ocr dependencies cannot be downloaded due to low device storage</string>
+    <string name="title_activity_main" translatable="false">Ocr Detector Sample</string>
+    <string name="ocr_header" translatable="false">Click &quot;Detect Text&quot; to detect text</string>
+    <string name="read_text" translatable="false">Detect Text</string>
+    <string name="auto_focus">Auto Focus</string>
+    <string name="use_flash" translatable="false">Use Flash</string>
+    <string name="ocr_success" translatable="false">Text read successfully</string>
+    <string name="ocr_failure">No text captured</string>
+    <string name="ocr_error">Error reading text: %1$s </string>
+    <string name="DateBeginn">Beginning Date</string>
+    <string name="DateEnd">Ending Date</string>
+    <string name="noInfo">Could not transfer information, please check your connection</string>
+    <string name="history_Start">history of selected currency rate</string>
+    <string name="liveCamScanner">Live Camera-Scanner</string>
+    <string name="noConnection">Your are not connected (airplane mode?) </string>
+    <string name="dbErrorUpdate">There was an DataBank error while trying to update </string>
+    <string name="lastUpdatet">last Updated: %1$s</string>
+    <string name="hisBeginDate">Beginning Date:</string>
+    <string name="hisCountedDays">Days:</string>
+    <string name="hisEndDate">Last Day</string>
+    <string name="day">Day</string>
+    <string name="value">Value</string>
+    <string name="hisCompared">" compared to 1 EUR"</string>
+    <string name="Date">Date:</string>
+    <string name="hisErrorNoDate">Please enter the dates first</string>
+    <string name="hisErrorCouldntFetchObj">Couldn\'t fetch the date from object</string>
+    <string name="camDetected">Detected:</string>
+    <string name="scan">Please aim for a Number</string>
+    <string name="retry">retry?</string>
+    <string name="updateError">Error while updating</string>
+    <string name="DateWrittenOut" translatable="false">%1$s.%2$s.%3$s</string>
+    <string name="camInfBottem">%1$s to %2$s</string>
+    <string name="updateFound">Press retry to retriev new Data</string>
+    <string name="SA_Prompt">Say something like Czech or Czech crowns</string>
+    <string name="SA_noSupport">Your Phone cant use Google Speechinput</string>
+    <string name="SA_notFound">Either %1$s is not in the Country list or %1$s has euro as a currency</string>
+</resources>

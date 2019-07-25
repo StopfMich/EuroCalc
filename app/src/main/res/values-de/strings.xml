@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">EuroCalc</string>
+    <string name="DateBeginn">Anfangs-Datum</string>
+    <string name="DateEnd">End-Datum</string>
+    <string name="auto_focus">Auto Focus</string>
+    <string name="dbErrorUpdate">Ein Datanbank-Fehler ist beim updaten aufgetreten</string>
+    <string name="history_Start">Geschichte der ausgewählten Währung einsehen</string>
+    <string name="lastUpdatet">Stand:  %1$s</string>
+    <string name="liveCamScanner">Echtzeit Scanner</string>
+    <string name="low_storage_error">Ocr Abhängikeiten konnte durch den geringen Speicherplatz nicht heruntergeladen werden</string>
+    <string name="noConnection">Sie haben keine Verbindung zum Internet</string>
+    <string name="noInfo">Keine Informationen, bitte überprüfe deine Verbindung</string>
+    <string name="no_camera_permission">Konnte die Anwendung nicht starten, keine Kamera-Berichtigung</string>
+    <string name="ocr_error">Fehler, lese Text: %1$s</string>
+    <string name="ocr_failure">Kein Text konnte Aufgenommen werden </string>
+    <string name="ok">ok</string>
+    <string name="permission_camera_rationale">Die Berichtigung für die Kamera wird für diese Funktion benötigt</string>
+    <string name="title_activity_history">Geschichte</string>
+    <string name="hisBeginDate">Anfangs-Datum:</string>
+    <string name="hisCountedDays">Aufgezeichnete Tage:</string>
+    <string name="hisEndDate">Letzter Tag:</string>
+    <string name="day">Tag</string>
+    <string name="value">Wert</string>
+    <string name="hisCompared">" im Verhältnis zu 1 EUR"</string>
+    <string name="Date">Datum:</string>
+    <string name="hisErrorNoDate">Bitte gebe anfangs und end Datum zuerst ein</string>
+    <string name="hisErrorCouldntFetchObj">Konnte kein Datum/Daten aus den Json bergen</string>
+    <string name="camDetected">"Erkannt: "</string>
+    <string name="scan">Bitte auf eine Nummer halten</string>
+    <string name="retry">wiederholen?</string>
+    <string name="updateError">Beim Updaten ist ein Fehler aufgetreten</string>
+    <string name="camInfBottem">%1$s zu %2$s</string>
+    <string name="updateFound">Drücke auf wiederholen um neue Daten zu empfangen</string>
+    <string name="SA_Prompt">Bitte sagen Sie etwas wie  \"Tschechien\" oder \"Tschechische Kronen\"</string>
+    <string name="SA_noSupport">Dein Handy hat nicht googles \"Speech to Text\", bitte installiere Gboard</string>
+    <string name="SA_notFound">Entweder ist %1$s nicht in der Länderlist oder hat Euro als Währung</string>
+</resources>

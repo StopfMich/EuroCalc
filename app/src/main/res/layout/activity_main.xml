@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/balck_Backround"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/valueCurrency"
+        android:layout_width="140dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:background="@android:color/holo_blue_dark"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerCurrency" />
+
+    <EditText
+        android:id="@+id/valueEuro"
+        android:layout_width="140dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginBottom="200dp"
+        android:background="@android:color/holo_blue_dark"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textColorHighlight="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toTopOf="@+id/history"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/euro"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/eu"
+        android:elegantTextHeight="false"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="36sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@+id/valueEuro"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/lastUpdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/noInfo"
+        android:textColor="@android:color/white"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/valueEuro" />
+
+    <Button
+        android:id="@+id/history"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:background="@android:color/holo_blue_dark"
+        android:onClick="historyStart"
+        android:text="@string/history_Start"
+        android:textAllCaps="false"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/valueEuro" />
+
+    <Spinner
+        android:id="@+id/spinnerCurrency"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:layout_marginEnd="16dp"
+        android:background="@android:color/darker_gray"
+        android:dropDownWidth="wrap_content"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/euro"
+        app:layout_constraintEnd_toEndOf="parent"></Spinner>
+
+    <Button
+        android:id="@+id/datePickerEnd"
+        android:layout_width="154dp"
+        android:layout_height="51dp"
+        android:layout_marginEnd="8dp"
+        android:background="@android:color/holo_blue_dark"
+        android:onClick="openCalenderEnd"
+        android:text="@string/DateEnd"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/datePickerBeginn"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/datePickerBeginn"
+        android:layout_width="154dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="24dp"
+        android:background="@android:color/holo_blue_dark"
+        android:onClick="openCalenderStart"
+        android:text="@string/DateBeginn"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/history"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/startCam"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/ic_camera_black_24dp"
+        android:inputType="text"
+        android:onClick="startCam"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@+id/datePickerBeginn"
+        app:layout_constraintEnd_toStartOf="@+id/datePickerEnd" />
+
+    <Button
+        android:id="@+id/retry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:inputType="text"
+        android:onClick="restart"
+        android:text="@string/retry"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lastUpdate" />
+
+    <Button
+        android:id="@+id/voiceRe"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="64dp"
+        android:background="@drawable/mic"
+        android:onClick="startVoiceInput"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/startCam"
+        app:layout_constraintStart_toEndOf="@+id/datePickerBeginn" />
+
+</android.support.constraint.ConstraintLayout>

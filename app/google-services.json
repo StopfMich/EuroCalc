@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "752498910032",
+    "firebase_url": "https://eurocalc-8fafa.firebaseio.com",
+    "project_id": "eurocalc-8fafa",
+    "storage_bucket": "eurocalc-8fafa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:752498910032:android:eae72d6b2918ac6c",
+        "android_client_info": {
+          "package_name": "com.steffen.EuroCalc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "752498910032-4u4g3o36e20p1sutu2h2qib8nvqebl00.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbK0EXP8FOeLMk2BifBDfZYSlmGiY-AuQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "752498910032-4u4g3o36e20p1sutu2h2qib8nvqebl00.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
