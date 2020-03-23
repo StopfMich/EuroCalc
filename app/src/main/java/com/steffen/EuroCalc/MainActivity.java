@@ -26,12 +26,12 @@ import com.steffen.EuroCalc.speechToText.StoredNames;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
-
+// todo: Autoupdater --> https://stackoverflow.com/questions/34251575/how-to-autoupdate-android-app-without-playstore-like-facebook-app-or-any-contes
 public class MainActivity extends AppCompatActivity {
-    public static final String EXTRA_CURRENCY = "com.steffen.geldkurs.CURRENCY";
-    public static final String EXTRA_CURRENCY_VALUE = "com.steffen.geldkurs.CURRENCY_VALUE";
-    public static final String EXTRA_DATEBEGINN = "com.steffen.geldkurs.DATEBEGINN";
-    public static final String EXTRA_DATEEND = "com.steffen.geldkurs.DATEEND";
+    public static final String EXTRA_CURRENCY = "com.steffen.EuroCalc.CURRENCY";
+    public static final String EXTRA_CURRENCY_VALUE = "com.steffen.EuroCalc.CURRENCY_VALUE";
+    public static final String EXTRA_DATEBEGINN = "com.steffen.EuroCalc.DATEBEGINN";
+    public static final String EXTRA_DATEEND = "com.steffen.EuroCalc.DATEEND";
     public static final int REQ_CODE_SPEECH_INPUT = 100;
     boolean isUser = true;
     boolean firstStart;
@@ -69,13 +69,15 @@ public class MainActivity extends AppCompatActivity {
         errorMsg.setContext(this);
         try {
             sql = sql.getSQL();
-            if (!sql.getJsStrings().equals("")) {
-                firstStart = false;
-            } else {
-                errorMsg.errorToast("First startup - could take a minute", false);
+            if (sql.getJsStrings().equals("")) {
                 firstStart = true;
+                errorMsg.errorToast("First startup - could take a minute", false);
+
+            } else {
+                firstStart = false;
             }
         } catch (Exception e) {
+            firstStart = true;
             sql = new SqlDbClass(null, null, 0, true);
         }
 
@@ -105,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
                             startAfterVolley(result);
                     } catch (Exception e) {
                         errorMsg.errorToast(getResources().getString(R.string.updateError), true);
+                        firstStart = true;
                         retry.setVisibility(View.VISIBLE);
                     }
                 }

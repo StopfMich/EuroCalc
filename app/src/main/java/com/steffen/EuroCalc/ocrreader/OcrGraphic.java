@@ -66,7 +66,7 @@ public class OcrGraphic extends GraphicOverlay.Graphic {
         if (textPaint == null) {
             textPaint = new Paint();
             textPaint.setColor(TEXT_COLOR);
-            textPaint.setTextSize(60.0f);
+            textPaint.setTextSize(80.0f);
         }
         // Redraw the overlay, as this graphic has been added.
         postInvalidate();
@@ -122,6 +122,7 @@ public class OcrGraphic extends GraphicOverlay.Graphic {
             TextView textView = ((OcrCaptureActivity) context).findViewById(R.id.outPut);
             toEuro = logic.isStringEuro(textView.getText().toString());
             String displayText = logic.tryToTransformInput(currentText.getValue(),this.currentCurrencyValue, toEuro);
+            //displayText = logic.longNumberShorter(displayText);
             if (!displayText.equals("No Number")) {
                 canvas.drawRect(rect, rectPaint);
                 canvas.drawText(displayText, left, bottom, textPaint);

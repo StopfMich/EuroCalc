@@ -1,12 +1,16 @@
 package com.steffen.EuroCalc;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
+
+import com.orm.dsl.Ignore;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -151,6 +155,7 @@ public class Logic {
     }
 
     public String calculateOtherCurrency(String euro, String currency) {
+        DecimalFormat dcF = new DecimalFormat("#.##");
         double result = 0;
         if (!euro.equals("") && !currency.equals("")) {
             if (euro.equals(".")) {
@@ -160,7 +165,7 @@ public class Logic {
                 double thisEuro = Double.parseDouble(euro);
                 double thisCurrency = Double.parseDouble(currency);
                 result = round(thisEuro * thisCurrency, 2);
-                return Double.toString(result);
+                return dcF.format(result);
             } catch (NumberFormatException e) {
                 errorMsg.errorToast("Fehler: versuchen sie ein anderes Zahlen-Format", false);
             }
@@ -169,6 +174,7 @@ public class Logic {
     }
 
     public String calculateToEuro(String currentCurencyValue, String currencyAmount) {
+        DecimalFormat dcF = new DecimalFormat("#.##");
         if (!currentCurencyValue.equals("") && !currencyAmount.equals("")) {
             if (currencyAmount.equals(".")) {
                 currencyAmount = "0.";
@@ -177,7 +183,7 @@ public class Logic {
                 double value = Double.parseDouble(currentCurencyValue);
                 double amount = Double.parseDouble(currencyAmount);
                 double result = round(amount / value, 2);
-                return Double.toString(result);
+                return dcF.format(result);
             } catch (NumberFormatException e) {
                 errorMsg.errorToast("Fehler: versuchen sie ein anderes Zahlen-Format", false);
             }
@@ -202,7 +208,7 @@ public class Logic {
             Date lastDate = sdfnext.parse(Date + " 18:00");
             next.setTime(lastDate);
             next.set(Calendar.MONTH, current.get(Calendar.MONTH));
-            if (current.get(Calendar.DAY_OF_WEEK) != Calendar.FRIDAY){
+            if (current.get(Calendar.DAY_OF_WEEK) != Calendar.FRIDAY) {
                 next.add(Calendar.DAY_OF_MONTH, 1);
             } else {
                 next.add(Calendar.DAY_OF_MONTH, 3);
@@ -300,7 +306,7 @@ public class Logic {
             if (errorHandling == 0) {
                 couldTransfrom = false;
             } else {
-                result = String.valueOf(errorHandling);
+                result = longNumberShorter(errorHandling);
                 couldTransfrom = true;
             }
         }
@@ -336,7 +342,7 @@ public class Logic {
         }
         //todo PUNKT und KOMMA sortieren
         if ((dotAmount == 1 && comAmount == 1) || dotAmount > 1 || comAmount > 1) {
-           // result = sortDot(dotAmount,comAmount,result);
+            result = sortDot(dotAmount, comAmount, result);
         }
         try {
             resultDouble = Double.parseDouble(result);
@@ -345,9 +351,9 @@ public class Logic {
         }
 
 
-
         return resultDouble;
     }
+
     private String sortDot(int dotAmount, int comAmount, String result) {
         char disPoint, notDisPoint, c;
         int length = result.length();
@@ -362,12 +368,11 @@ public class Logic {
         for (int i = 0; i < length; i++) {
             c = result.charAt(i);
             if (c == disPoint) {
-                resultFinal = resultFinal + "." ;
+                resultFinal = resultFinal + ".";
                 //resultFinal = resultFinal + "";
             } else if (c == notDisPoint) {
                 resultFinal = resultFinal + "";
-            }
-            else {
+            } else {
                 resultFinal = resultFinal + c;
                 //resultFinal = resultFinal + c ;
             }
@@ -385,4 +390,23 @@ public class Logic {
             return false;
         }
     }
+
+    public String longNumberShorter(Double input) {
+        DecimalFormat dcF = new DecimalFormat("#.####");
+        String string = dcF.format(input);
+        return string;
+    }
+
+    /*public Double longStringToDouble(String input) {
+        double resultD = 0;
+        String resultS = input.toString();
+        try {
+            resultD = Double.parseDouble(resultS);
+
+        } catch (Exception ignored) {}
+        DecimalFormat dcF = new DecimalFormat("#.####");
+        try {
+            resultS = dcF.parse(resultS);
+        } catch (ParseException ignored) {}
+    }*/
 }
