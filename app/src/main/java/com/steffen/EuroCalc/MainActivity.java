@@ -121,7 +121,6 @@ public class MainActivity extends AppCompatActivity {
             startAfterVolley(result);
         } else { //wenn es der erste start ist, aber keine Verbnindung aufgebaut werden konnte
             errorMsg.errorToast(getResources().getString(R.string.updateError), true);
-            errorMsg.errorToast("Fehler beim Start", true);
             retry.setVisibility(View.VISIBLE);
         }
     }
