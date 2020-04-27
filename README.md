@@ -17,7 +17,7 @@
 > (118-126) wenn es nicht der erste Start ist, wird [Volley](##NetHelper) nicht ausgeführt um die App schneller starten zu lassen (es wird nicht auf ein Callback gewartet). Wenn nichts klappt, hört er auf zu laden und zeigt den retry-Button
 >
 ## startAfterVolley
-> Dies wird ausgeführt, wenn Daten aus [onCreate](##oncreate) übergeben worden sind.
+> Dies wird ausgeführt, wenn Daten aus [onCreate](#oncreate) übergeben worden sind.
 > (130-133) Der Jsons-String wird ins [DataWarehouse](#-datawarehouse) übergeben und dort aufgeteilt. lastUpdate bezieht sich nicht auf den Zeitpunkt des Volley-Callbacks sondern, wann die Daten online gestellt wurden. Zu pupolateDropdown findet man unter [CustomAdapter](#-customAdapter) mehr.
 >
 > Der Rest von startAfterVolley ist im Source-Code mit kommentaren detaliert beschrieben. 
