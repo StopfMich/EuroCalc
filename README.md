@@ -43,3 +43,20 @@
 >            }
 >```
 > usw.
+
+# history
+## onCreate History
+> (37-51) Setzt wieder context und gibt android vor, es in den Landscape modus zu wechseln und die Navigationbar auszublenden.
+> (55-58) Übergibt [DataWarehouseSmall](#datawarehousesmall) die Daten, die über Inten mitgeschickt wurden.
+> (64-84) Die Url zur abfrage wird durch den (vom Benutzer angegebenen) Zeitraum erstellt und es wird wieder eine Volly abfrage ausgeführt. Die Daten werden ins [DataWarehouseSmall](#datawarehousesmall) übergeben und dort gespeichert.
+> (85-93) Baut das Overlay (über den Graphen).
+## buildGraph
+> [GraphView Doku](https://github.com/jjoe64/GraphView).
+> (103-111) Baut den Graphen im GraphView Feld.
+> (112-119) Einstellungen für de nGraphen, wie: Kann scrollen, kann zoomen, min & max Punkte pro x.
+> (123-125) Beschriftung der Achsen (Können nur die vergangenen Tage angeben, ein Daten haben sonst falsche reihenfolge).
+> (128-135) Design des Graphen wird festgelegt -> [Doku](https://github.com/jjoe64/GraphView/wiki/Style-options).
+> (136-148) Wenn auf einen Punkt auf dem Graphen gedrückt wird, bekommt man den Wert und das Datum oben Angezeigt.
+> (150) Die Punkte werden auf den Graphen "eingezeichnet".
+# DataWarehouseSmall
+> Ist wie DataWarehouse welcher in der [MainActivity](#aainactivity), nur mit weniger Daten, da (History)[#history] nur den Verlauf einer Währung anzeigen soll.
