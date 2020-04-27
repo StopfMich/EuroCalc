@@ -65,6 +65,7 @@
 
 # Logic
 > Diese Klasse unterteilt sich nochmal in 3 Teile auf
+>
 > 1: [Main-Logic](#main-logic) 22-226 Viele (aber nicht nur) Funktionen für die [MainActivity](#mainactivity)
 >
 > 2: [History-Logic](#history-logic) 233-278 Funktionen für [History](#history-verzeichniss)
