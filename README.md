@@ -1,5 +1,6 @@
-# MainActivity
-## onCreate
+# Hauptverzeichniss
+## MainActivity
+### onCreate
 > onCreate ist wie die Main in einem normalen Java-Programm, sie wird als erstes ausgeführt.
 >
 > (54-63) als erstes werden die Textfelder, Buttons usw. in die MainActivity initialisiert.
@@ -16,7 +17,7 @@
 > (105-116) onError wird ausgeführt, wenn die verbindung nicht erfolgreich war. Es wird versucht die Daten aus der Db zu bekommen, wenn diese vorhanden sind, wird mit startAfterVolley alles danach ausgeführt, wenn nicht, wird einfach nur der retry-Button angezeigt.
 > (118-126) wenn es nicht der erste Start ist, wird [Volley](##NetHelper) nicht ausgeführt um die App schneller starten zu lassen (es wird nicht auf ein Callback gewartet). Wenn nichts klappt, hört er auf zu laden und zeigt den retry-Button
 >
-## startAfterVolley
+### startAfterVolley
 > Dies wird ausgeführt, wenn Daten aus [onCreate](#oncreate) übergeben worden sind.
 > (130-133) Der Jsons-String wird ins [DataWarehouse](#datawarehouse) übergeben und dort aufgeteilt. lastUpdate bezieht sich nicht auf den Zeitpunkt des Volley-Callbacks sondern, wann die Daten online gestellt wurden. Zu pupolateDropdown findet man unter [CustomAdapter](#customAdapter) mehr.
 >
@@ -44,13 +45,26 @@
 >```
 > usw.
 
-# history
-## onCreate History
+
+## CustomAdapter
+> Der CustomAdapter bezieht sich auf das Menü, welches beim Druck auf die Rechte Flagge erscheint.
+> Da es in Android kein Vordefiniertes Dropdown & list Menü gibt, musste dies über einen CustomAdapter gemacht werden. Eine Doku findest sich [hier](https://developer.android.com/reference/android/widget/SpinnerAdapter)
+> Die @Override sind Funktionen, bei AndroidStudio miterstellt werden.
+### getView
+> Durch die ausgewählte Position wird das richtige Land rausgesucht und die Abkürzung im spinner_selected main gesetzt z.B.(de, au).
+### getDropDownView
+> Setzt die Flaggen als "Hintergrund" für spinner_item_layout flaggeSpinner. Befüllt wir der Spinner in der AminActivity Zeile 222.
+### getItemByString
+> Diese Funktion wird dafür benutzt, über einen String das Item im Spinner zu finden und diese als int zurück zu geben. Diese Funktion wird bei der Sprachsteuerung verwendet, um das richtige Item (Land) auszuwählen.
+
+# History Verzeichniss
+## History
+### onCreate History
 > (37-51) Setzt wieder context und gibt android vor, es in den Landscape modus zu wechseln und die Navigationbar auszublenden.
 > (55-58) Übergibt [DataWarehouseSmall](#datawarehousesmall) die Daten, die über Inten mitgeschickt wurden.
 > (64-84) Die Url zur abfrage wird durch den (vom Benutzer angegebenen) Zeitraum erstellt und es wird wieder eine Volly abfrage ausgeführt. Die Daten werden ins [DataWarehouseSmall](#datawarehousesmall) übergeben und dort gespeichert.
 > (85-93) Baut das Overlay (über den Graphen).
-## buildGraph
+### buildGraph
 > [GraphView Doku](https://github.com/jjoe64/GraphView).
 > (103-111) Baut den Graphen im GraphView Feld.
 > (112-119) Einstellungen für de nGraphen, wie: Kann scrollen, kann zoomen, min & max Punkte pro x.
@@ -58,5 +72,5 @@
 > (128-135) Design des Graphen wird festgelegt -> [Doku](https://github.com/jjoe64/GraphView/wiki/Style-options).
 > (136-148) Wenn auf einen Punkt auf dem Graphen gedrückt wird, bekommt man den Wert und das Datum oben Angezeigt.
 > (150) Die Punkte werden auf den Graphen "eingezeichnet".
-# DataWarehouseSmall
+## DataWarehouseSmall
 > Ist wie DataWarehouse welcher in der [MainActivity](#aainactivity), nur mit weniger Daten, da (History)[#history] nur den Verlauf einer Währung anzeigen soll.
