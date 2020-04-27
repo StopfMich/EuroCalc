@@ -1,2 +1,3 @@
+// Edit
 configurations.maybeCreate("default")
 artifacts.add("default", file('sugar-1.4_beta.jar'))
