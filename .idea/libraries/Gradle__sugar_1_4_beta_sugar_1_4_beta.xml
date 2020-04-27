@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Gradle: sugar-1.4_beta.sugar-1.4_beta">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/sugar-1.4_beta/sugar-1.4_beta.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
