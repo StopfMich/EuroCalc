@@ -158,3 +158,43 @@
 > (150) Die Punkte werden auf den Graphen "eingezeichnet".
 ## DataWarehouseSmall
 > Ist wie [DataWarehouse](#datawarehouse) welcher in der [Hauptverzeichniss](#hauptverzeichniss) ist, nur mit weniger Daten, da [History](#history) nur den Verlauf einer Währung anzeigen soll.
+
+# Ocrreader Verzeichniss
+> Der OCR Reader ist ein Framework Namens Mobile Vision und ist ein alte Projekt, welches nun von cloud.google abgelöst wurde. Mobile Vision ist aber im Gegensatz zur Cloud-Lösung kostenlos. Im folgenden werden nur die wichtigen, geänderten Sachen erwähnt. Eine Dokumentation über Mobile Vision findet sich [hier](https://developers.google.com/vision/introduction).
+
+## OrcDetectorProcessor Datei
+### OrcDetectorProcessor
+>Ist der Konstruktor und wird beim Start einmal ausgeführt
+>
+>(47-60) Dies ist für das richtige setzten im UI da (Euro zu ...), im unterem Rand. Es setzt auch einen Listener, welcher immer ausgeführt wird, wenn anders herum umgerechnet werden soll.
+
+
+### setText
+> Setzt den Text unten mit dem String aus der logic [createCamString](#createcamstring).
+
+
+## OrcGraphic
+> Diese Datei ist für das zeichnen der Box zuständig. Hier werden auch über die Logic direkt die Änderungen der Anzeige vorgenommen. So steht in der Box nicht der alte Wert, sonder der neue umgerechnete Wert.
+
+### draw
+>Die Funktion Zeichnet die Box und den inneren Text.
+>
+>Die änderungen können von Zeile 119 bis 127 beobachtet werden. Hier sieht man auch die Aufrufe zur [Ocr-Logic](#ocr-logic) und dessen Funktionen.
+
+# StoredNames
+> Diese Datei enthält zwei Switch-Case Abfragen, welche Ländern (welche durch ein String übergeben werden), ihre abkürzung zuweist.
+>
+> Diese Datei wird größtenteils von der Sprachsteuerung verwendet, um nachher das passende Land auszuwählen.
+
+# SqlDbClass
+> Die Datenbank wird mit dem [Sugar-Framework](https://satyan.github.io/sugar/index.html) erstellt, da wir nur 4 Werte speichern mussten. 
+>
+> Dies wären Folgendes:
+>
+> 1. jsString: Der letzte String, den man aus der [Volly](#nethelper) abfrage bekommen hat
+>
+> 2. lastUpdate: Wann das letzte mal der Datensatz geupdatet wurde
+>
+> 3. lastRightId: Speichert das zuletzt ausgewählte Land
+>
+> 4. firstStartup: Wurde das Programm schonmal ausgeführt? Wichtig für den Start [onCreate](#oncreate).
