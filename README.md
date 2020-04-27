@@ -63,20 +63,75 @@
 ## ErrorClass
 > Es nur dafür da, eine Fehlermeldung anzuzeigen mit einem übergebenen String und einem Wahrheitswert (kurz oder lange anzeigen)
 
+# Logic
+> Diese Klasse unterteilt sich nochmal in 3 Teile auf
+> 1: [Main-Logic](#main-logic) 22-226 Viele (aber nicht nur) Funktionen für die [MainActivity](#mainactivity)
+>
+> 2: [History-Logic](#history-logic) 233-278 Funktionen für [History](#history-verzeichniss)
+>
+> 3: [Ocr-Logic](#ocr-logic) 284-398 Funktionen für [OcrReader](#ocrreader-verzeichniss)
+
+## Main Logic
+
+### init
+> Wird bei [onCreate](#oncreate), bei [History](#history) und bei [DataWarehouse](#datawarehouse) benutzt. Es gibt die View an, welche die Logic verändern kann und setzt auch den Context für die [ErrorClasse](#errorclasse) und kann direkt Fehlermedlungen Anzeigen.
+
+### round
+> Hiermit lässt sich die Zahl auf 2 Nachkommerstellen richtig runden. Keine Währung benutzt 6 Nachkommerstellen.
+
+### convertDate
+> Wandelt das Datum yyyy-mm-dd in dd-mm-yyyy um.
+
+### setImage
+> Bekommt einen String mit der Abkürzung des Landes. Wenn das Land (z.B. CZK) ist, wird die Bild id (im Form eines int) zurückgegeben.
+
+### calculateOtherCurrency
+> Bei eingabe ins Euro-Feld wird diese Funktion aufgerufen. Sie rechnet den Wert für das andere Feld aus. Die Funktionen ist auch dafür verantwortlich, bei einem leerem Feld oder falscher Eingabe (Punkt) nicht abzustürzen.
+
+### calculateToEuro
+> Wie [calculateOtherCurrency](#calculateothercurrency), nur halt von der fremden Währung zu Euro. Die Funktionen ist auch dafür verantwortlich, bei einem leerem Feld oder falscher Eingabe (Punkt) nicht abzustürzen. 
+
+### getFlaggsArray
+> Gibt ein Array mit den Flaggen-id`s zurück
+
+### timeToUpdate
+> Vergliecht den jetzigen Zeitpunkot mit dem im Json-String übergebenen Datum. Wenn es nicht Samstag oder Sonntag ist und nach 18:00 uhr, wird der Update-Knopf sichtbar.
+
+## History Logic
+### createUrl
+> Erstellt eine Url aus den übertragenen Daten aus der [MainActivity](#mainactivity). Die Funtkion gibt den String für [Volley](#nethelper) zurück.
+
+### stringToJsonObj
+> Die API gibt einen JSON-String zurück, dieser wird in ein JSON-Objekt umgewandelt
+
+### getCurrencyKeys
+> Gbit die 
+
+
+
 # History Verzeichniss
 ## History
 ### onCreate History
 > (37-51) Setzt wieder context und gibt android vor, es in den Landscape modus zu wechseln und die Navigationbar auszublenden.
+>
 > (55-58) Übergibt [DataWarehouseSmall](#datawarehousesmall) die Daten, die über Inten mitgeschickt wurden.
+>
 > (64-84) Die Url zur abfrage wird durch den (vom Benutzer angegebenen) Zeitraum erstellt und es wird wieder eine Volly abfrage ausgeführt. Die Daten werden ins [DataWarehouseSmall](#datawarehousesmall) übergeben und dort gespeichert.
+>
 > (85-93) Baut das Overlay (über den Graphen).
 ### buildGraph
 > [GraphView Doku](https://github.com/jjoe64/GraphView).
+>
 > (103-111) Baut den Graphen im GraphView Feld.
+>
 > (112-119) Einstellungen für de nGraphen, wie: Kann scrollen, kann zoomen, min & max Punkte pro x.
+>
 > (123-125) Beschriftung der Achsen (Können nur die vergangenen Tage angeben, ein Daten haben sonst falsche reihenfolge).
+>
 > (128-135) Design des Graphen wird festgelegt -> [Doku](https://github.com/jjoe64/GraphView/wiki/Style-options).
+>
 > (136-148) Wenn auf einen Punkt auf dem Graphen gedrückt wird, bekommt man den Wert und das Datum oben Angezeigt.
+>
 > (150) Die Punkte werden auf den Graphen "eingezeichnet".
 ## DataWarehouseSmall
 > Ist wie [DataWarehouse](#datawarehouse) welcher in der [Hauptverzeichniss](#hauptverzeichniss) ist, nur mit weniger Daten, da [History](#history) nur den Verlauf einer Währung anzeigen soll.
