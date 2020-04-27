@@ -105,8 +105,30 @@
 > Die API gibt einen JSON-String zurück, dieser wird in ein JSON-Objekt umgewandelt
 
 ### getCurrencyKeys
-> Gbit die 
+> Wandelt daten aus dem JSON-Objekt in ein String-Array um und gibt dieses Array zurück.
 
+### convertDataHistory
+> Wie [convertDate](#convertdate), nur umgekehrt. Also von dd-mm-yyyy zu yyyy-mm-dd.
+
+## Ocr Logic
+
+### createCamString
+> verändert die Anzeige unten im ocr_capture.xml. Also von welche Währung in welche gerade umgerechnet wird.
+
+### tryToTransformInput
+> Veruscht das erkannte zu filtern und in den String nur noch Zahlen zu lassen.
+
+### transformInputERRORhandling & sortDot
+> Falls in [tryToTransformInput](#trytotransforminput) in bestimmten Stelle ein Fehler auftritt ( Da Amerikaner die Komma oder Punkt setzung anders machen als die meisten Länder, ist dass ein Aögorithmuss nötig um zu gucken, welche Punkt/Komma setzung hier verwendert wird.), wird diese Funktion gerufen. Wir haben die sortDot Funktion ausgelagert, da die tryToTransformInput Funktion sonst noch unübersiichtlicher geworden wäre.
+
+### longNumberShorter
+> Kürzt den String und verhindert unnötig lange Nachkommerstellen. Diese Funktion wird in [tryToTransformInput](#trytotransforminput) gerufen.
+
+
+# NetHelper
+> Der NetHelper benutzt das Framework Volley um die Daten online von der EZB zu bekommen. Wir haben uns für Volley entschieden, da Volley nach einer definierten Zeit die Anfragen automatisch abbricht. Beim onSuccess Callback sind Daten Garantiert und erliechtert so das Fehlerabfangen.
+>
+>Die Dokumentation über Volley ist [hier](https://developer.android.com/training/volley) zu finden.
 
 
 # History Verzeichniss
