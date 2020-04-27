@@ -1,6 +1,8 @@
 package com.steffen.EuroCalc.speechToText;
 
-import java.util.Locale;
+/**
+ * Liste der Namen, die für die Spracherkennung benutzt werden können
+ */
 
 public class StoredNames {
     public String wordToSymbolDe(String input) {

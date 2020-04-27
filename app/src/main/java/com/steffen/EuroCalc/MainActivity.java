@@ -26,7 +26,7 @@ import com.steffen.EuroCalc.speechToText.StoredNames;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
-// todo: Autoupdater --> https://stackoverflow.com/questions/34251575/how-to-autoupdate-android-app-without-playstore-like-facebook-app-or-any-contes
+
 public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_CURRENCY = "com.steffen.EuroCalc.CURRENCY";
     public static final String EXTRA_CURRENCY_VALUE = "com.steffen.EuroCalc.CURRENCY_VALUE";
@@ -67,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
         data.init(this);
         logic.init(this);
         errorMsg.setContext(this);
+
+        // Überprüft ob es der erste Start der App ist
         try {
             sql = sql.getSQL();
             if (sql.getJsStrings().equals("")) {
@@ -81,8 +83,9 @@ public class MainActivity extends AppCompatActivity {
             sql = new SqlDbClass(null, null, 0, true);
         }
 
+        // Falls erster Start: erstellt db mit Daten
         if (firstStart) {
-            netHelper.getWechselkurs(new NetHelper.VolleyCallback() {
+            netHelper.getWechselkurs(new NetHelper.VolleyCallback() { //falls eine verbindung besteht, wird alles im Callback ausgeführt
                 @Override
                 public void onSuccess(String result) {
                     try {
@@ -93,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
                         sql = new SqlDbClass(result, null, 0, true);
                         sql.save();
                     }
-                    startAfterVolley(result);
+                    startAfterVolley(result); //wird nach einem erfolgreichen Update benutzt, line 130
                     sql = sql.getSQL();
                     sql.setLastUpdated(data.getLastUpdated());
                     sql.save();
@@ -112,11 +115,11 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
             }, this);
-        } else if (!firstStart) {
+        } else if (!firstStart) { //falls nicht erster start, nimm alte Daten
             sql = sql.getSQL();
             String result = sql.getJsStrings();
             startAfterVolley(result);
-        } else {
+        } else { //wenn es der erste start ist, aber keine Verbnindung aufgebaut werden konnte
             errorMsg.errorToast(getResources().getString(R.string.updateError), true);
             errorMsg.errorToast("Fehler beim Start", true);
             retry.setVisibility(View.VISIBLE);
@@ -128,48 +131,48 @@ public class MainActivity extends AppCompatActivity {
         data.storeStringToJsonobjects(result);
         lastUpdate.setText(getResources().getString(R.string.lastUpdatet, data.getLastUpdated()));
         euroValueView.setText("1");
-        pupolateDropdown(currencyText);
+        pupolateDropdown(currencyText); //setzt die Flaggen im Dropdown-Menü (Spinner)
         currencyText.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                try {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) { //Wenn ein Land ausgewählt wird
+                try { //Es wird das ausgewählte Land gespeichert. In der Regel besucht man nur ein Land -> es soll nicht immer die Währung gewechselt werden
                     sql = sql.getSQL();
                     sql.setLastRightId(currencyText.getSelectedItemPosition());
                     sql.save();
                 } catch (Exception e) {
-                    errorMsg.errorToast("Error at: 103-113", true);
+                    errorMsg.errorToast("Error at: 103-113", true); //Debug, würde aber einen Crash verhindern
                 }
 
-                data.setCurrentCurrency(currencyText.getSelectedItem().toString());
-                data.setCurrentCurrencyValue(data.getCurrencyValue(data.getCurrentCurrency()));
-                int img = logic.setImage(data.getCurrentCurrency());
-                if (img != 0) {
+                data.setCurrentCurrency(currencyText.getSelectedItem().toString()); //DataWarehouse.currentCurrency bekommt die abkürzung des ausgewählten Landes
+                data.setCurrentCurrencyValue(data.getCurrencyValue(data.getCurrentCurrency())); //Setzt den Umrechnungswert
+                int img = logic.setImage(data.getCurrentCurrency()); //bininhaltet die id des Flaggen-Bildes
+                if (img != 0) { //Wenn Bild vorhanden ist, setzte das bild
                     currencyText.setBackgroundResource(img);
-                    valueCurrency.setText(logic.calculateOtherCurrency(
+                    valueCurrency.setText(logic.calculateOtherCurrency( //rechnet den Wert vom Feld euroValueView in die ausgewählte währung um und zeigt den Wert an
                             euroValueView.getText().toString(), data.getCurrentCurrencyValue().toString())
                     );
                 }
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+            public void onNothingSelected(AdapterView<?> parent) { //Es passiert nichts, wenn nichts ausgewählt wird
             }
         });
-        euroValueView.addTextChangedListener(new TextWatcher() {
+
+        euroValueView.addTextChangedListener(new TextWatcher() { //Das Euro-Textfeld
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
             }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // todo update-Funktion mit Time-Check
-                if (isUser) {
-                    isUser = false;
-                    valueCurrency.setText(logic.calculateOtherCurrency(
+            public void onTextChanged(CharSequence s, int start, int before, int count) { //Soll pro eingabe die Zahl direkt umrechnen, ohne nochmal z.B. enter drücken zu müssen.
+                if (isUser) { //Wenn der Text durch den Benutzer geändert wird
+                    isUser = false; //Durch den Boolean ensteht kein Loop, die Text würden sich immer als geändert betrachten und es würde konstant berechnet werden.
+                    valueCurrency.setText(logic.calculateOtherCurrency( //wieder umrechnen
                             euroValueView.getText().toString(), data.getCurrentCurrencyValue().toString()));
                 } else {
-                    isUser = true;
+                    isUser = true; //Text wurde einmal geändert, nächste änderung wieder von nuutzer
                 }
             }
 
@@ -178,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        valueCurrency.addTextChangedListener(new TextWatcher() {
+        valueCurrency.addTextChangedListener(new TextWatcher() { //wie die Funktion von 169 - 177
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -201,12 +204,15 @@ public class MainActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
             }
         });
-        if (data.getCurrencyRates() == null) {
+
+
+        if (data.getCurrencyRates() == null) { //wenn ein kritischer Fehler aufkommen sollte (Daten sind nicht mehr vorhanden) wird die App neugestartet
             this.recreate();
         }
         sql = sql.getSQL();
         sql.setLastUpdated(data.getLastUpdated());
         sql.save();
+        //Will werte Updaten, wenn: Mo-FR nach 18:00 => Um diese Zeit updatet die API
         if (logic.timeToUpdate(data.getLastUpdated())) {
             retry.setVisibility(View.VISIBLE);
             errorMsg.errorToast(getResources().getString(R.string.updateFound), true);
@@ -224,11 +230,10 @@ public class MainActivity extends AppCompatActivity {
             sql = sql.getSQL();
             spinner.setSelection(sql.getLastRightId());
         } catch (Exception e) {
-            errorMsg.errorToast("Error-Code: 185-190", true);
+            errorMsg.errorToast("Error, please restart the App", true);
         }
-        /*
-          Beim start wird die Zuletzt gewählte Währung ausgewählt, wenn vorhanden ist
-         */
+        //Beim start wird die Zuletzt gewählte Währung ausgewählt, wenn vorhanden ist
+
     }
 
     // History Klasse (Datepicker & HistoryStart)
@@ -276,7 +281,7 @@ public class MainActivity extends AppCompatActivity {
         picker.show();
     }
 
-    public void historyStart(View view) {
+    public void historyStart(View view) { //Übernimmt die Daten in die nächste Teil-Activity
 
         Intent intent = new Intent(this, History.class);
         String currency = data.getCurrentCurrency();
@@ -289,7 +294,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Kamera-Live scan
-    public void startCam(View view) {
+    public void startCam(View view) {//Übernimmt die Daten in die nächste Teil-Activity
         Intent intent = new Intent(this, OcrCaptureActivity.class);
         String currency = data.getCurrentCurrency();
         String currencyValue = String.valueOf(data.getCurrentCurrencyValue());
@@ -302,15 +307,21 @@ public class MainActivity extends AppCompatActivity {
         this.recreate();
     }
 
-    // Spracheingabe für Flaggen auswahl
+    /*
+    Spracheingabe für Flaggen auswahl
+    Benötigt die Google-Tastertur. Bei nicht Vorhanden sein, wird der standart Browser mit einer Anleitung geöffnet
+     */
     public void startVoiceInput(View view) {
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+
+        //Wechselt zwischen Deutscher und Englischer Spracherkennung
         if (Locale.getDefault().getLanguage().equals("de")) {
             intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
         } else {
             intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en-US");
         }
+
         intent.putExtra(RecognizerIntent.EXTRA_PROMPT, getResources().getString(R.string.SA_Prompt));
         try {
             startActivityForResult(intent, REQ_CODE_SPEECH_INPUT);
@@ -321,6 +332,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //Regelt den Ablauf bei der Rückgabe des String Arrays (Alle verstandenen Wörter)
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         int spinnerItemId;

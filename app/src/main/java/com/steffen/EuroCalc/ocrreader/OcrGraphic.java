@@ -38,10 +38,8 @@ public class OcrGraphic extends GraphicOverlay.Graphic {
     Logic logic = new Logic();
 
     private int id;
-    private List textCompnents;
     private String currentCurrencyValue;
     private Context context;
-    private Button change;
 
     private static final int TEXT_COLOR = 0xff00ffff;
     private static final int BOUND_BOX_COLOR = 0xff003768;

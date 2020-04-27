@@ -130,8 +130,7 @@ public class CameraSource {
 
     private Size previewSize;
 
-    // These values may be requested by the caller.  Due to hardware limitations, we may need to
-    // select close, but not exactly the same values for these.
+    // Eingabe für Auflösung und fps => Durch schwächere Hardware sollte es niedriger bleiben.
     private float requestedFps = 15.0f;
     private int requestedPreviewWidth = 1280;
     private int requestedPreviewHeight = 720;

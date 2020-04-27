@@ -14,7 +14,6 @@ public class DataWarehouse {
     Logic logic = new Logic();
     ErrorClass errorMsg = new ErrorClass();
     private Context context;
-    private JSONObject currencyArray;
     private JSONObject currencyRates;
     private String[] currencyKeys;
     private String lastUpdated;
@@ -32,13 +31,9 @@ public class DataWarehouse {
     public void storeStringToJsonobjects(String string) {
         String dumpString;
         try {
-            //todo Monat muss manuell gesetzt werden?????
             JSONObject obj = new JSONObject(string);
-            currencyArray = obj;
             dumpString = obj.getString("date");
-            lastUpdated = logic.convertDate(dumpString, this.context);
-
-            dumpString = obj.getString("rates");
+            lastUpdated = logic.convertDate(dumpString, this.context); //wechsel von yyyy-mm-dd zu dd.mm.yyyy
             currencyRates = obj.getJSONObject("rates");
             setCurrencyKeys();
 
