@@ -57,6 +57,12 @@
 ### getItemByString
 > Diese Funktion wird dafür benutzt, über einen String das Item im Spinner zu finden und diese als int zurück zu geben. Diese Funktion wird bei der Sprachsteuerung verwendet, um das richtige Item (Land) auszuwählen.
 
+## DataWarehouse
+> Speichert den JsonString aus der API und teilt ihn auf. Besteht nur aus Daten und soll den JsonString und brauchbare Typen umwandeln.
+
+## ErrorClass
+> Es nur dafür da, eine Fehlermeldung anzuzeigen mit einem übergebenen String und einem Wahrheitswert (kurz oder lange anzeigen)
+
 # History Verzeichniss
 ## History
 ### onCreate History
@@ -73,4 +79,4 @@
 > (136-148) Wenn auf einen Punkt auf dem Graphen gedrückt wird, bekommt man den Wert und das Datum oben Angezeigt.
 > (150) Die Punkte werden auf den Graphen "eingezeichnet".
 ## DataWarehouseSmall
-> Ist wie DataWarehouse welcher in der [MainActivity](#aainactivity), nur mit weniger Daten, da (History)[#history] nur den Verlauf einer Währung anzeigen soll.
+> Ist wie [DataWarehouse](#datawarehouse) welcher in der [Hauptverzeichniss](#hauptverzeichniss) ist, nur mit weniger Daten, da [History](#history) nur den Verlauf einer Währung anzeigen soll.
