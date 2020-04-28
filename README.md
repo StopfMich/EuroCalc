@@ -1,4 +1,27 @@
-# **Hauptverzeichniss**
+# **Inhaltsverzeichnis**
+>- [**Hauptverzeichniss**](#hauptverzeichniss)
+>   + [MainActivity](#mainactivity)
+>
+>   + [CustomAdapter](#customadapter)
+>
+>   + [DataWarehouse](#datawarehouse)
+>
+>   + [Logic](#logic)
+>       + [Main Logic](#main-logic) 
+>       + [History Logic](#history-logic) 
+>       + [Ocr Logic](#ocr-logic)
+>
+>- [**History Verzeichniss**](#history-verzeichniss)
+>   + [History](#history)
+>
+>   + [DataWarehouseSmall](#datawarehousesmall)
+>- [**Ocrreader Verzeichniss**](#ocrreader-verzeichniss)
+>   + [OrcDetectorProcessor Datei](#orcdetectorprocessor-datei)
+>
+>   + [OrcGraphic](#orcgraphic)
+>- [**StoredNames**](#storednames)
+>- [**SqlDbClass**](#sqldbclass)
+# Hauptverzeichniss
 
 ## MainActivity
 
