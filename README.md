@@ -48,37 +48,37 @@
 ```Java
 public void onItemSelected(AdapterView\&lt;?\&gt; parent, View view, int position, long id) { //Wenn ein Land ausgewählt wird
 
-try { //Es wird das ausgewählte Land gespeichert. In der Regel besucht man nur ein Land -\&gt; es soll nicht immer die Währung gewechselt werden
+    try { //Es wird das ausgewählte Land gespeichert. In der Regel besucht man nur ein Land -\&gt; es soll nicht immer die Währung gewechselt werden
 
-sql = sql.getSQL();
+        sql = sql.getSQL();
 
-sql.setLastRightId(currencyText.getSelectedItemPosition());
+        sql.setLastRightId(currencyText.getSelectedItemPosition());
 
-sql.save();
+        sql.save();
 
-} catch (Exception e) {
+    } catch (Exception e) {
 
-errorMsg.errorToast(&quot;Error at: 103-113&quot;, true); //Debug, würde aber einen Crash verhindern
+        errorMsg.errorToast(&quot;Error at: 103-113&quot;, true); //Debug, würde aber einen Crash verhindern
 
-}
+    }
 
-data.setCurrentCurrency(currencyText.getSelectedItem().toString()); //DataWarehouse.currentCurrency bekommt die abkürzung des ausgewählten Landes
+    data.setCurrentCurrency(currencyText.getSelectedItem().toString()); //DataWarehouse.currentCurrency bekommt die abkürzung des ausgewählten Landes
 
-data.setCurrentCurrencyValue(data.getCurrencyValue(data.getCurrentCurrency())); //Setzt den Umrechnungswert
+    data.setCurrentCurrencyValue(data.getCurrencyValue(data.getCurrentCurrency())); //Setzt den Umrechnungswert
 
-int img = logic.setImage(data.getCurrentCurrency()); //bininhaltet die id des Flaggen-Bildes
+    int img = logic.setImage(data.getCurrentCurrency()); //bininhaltet die id des Flaggen-Bildes
 
-if (img !=0) { //Wenn Bild vorhanden ist, setzte das bild
+    if (img !=0) { //Wenn Bild vorhanden ist, setzte das bild
 
-currencyText.setBackgroundResource(img);
+        currencyText.setBackgroundResource(img);
 
-valueCurrency.setText(logic.calculateOtherCurrency( //rechnet den Wert vom Feld euroValueView in die ausgewählte währung um und zeigt den Wert an
+        valueCurrency.setText(logic.calculateOtherCurrency( //rechnet den Wert vom Feld euroValueView in die ausgewählte währung um und zeigt den Wert an
 
-euroValueView.getText().toString(), data.getCurrentCurrencyValue().toString())
+            euroValueView.getText().toString(), data.getCurrentCurrencyValue().toString())
 
-);
+        );
 
-}
+    }
 
 }
 ```
