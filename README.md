@@ -1,3 +1,6 @@
+# *EuroCalc*
+> Eurocalc ist ein Währungsumrechner welcher auch mit der Hilfe der Kamera die Währung "on the fly" umrechnen kann. Dabei wird der umgerechnete Wert blau über den echten Text >gelegt.
+> ***Dieses Projekt ist vorerst eingestellt und wurde in Rahmen einer schulischen Arbeit erstellt.***
 # **Inhaltsverzeichnis**
 >- [**Hauptverzeichniss**](#hauptverzeichniss)
 >   + [MainActivity](#mainactivity)
